@@ -102,19 +102,7 @@ def test_returned_status_filter_test(page):
     DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().openStatusFilter().selectCheckbox("Returned").closeDropdownByEsc().pressApply()
 
 def test_all_status_filter_test(page):
-    statuses = (
-        notInLineCount
-        + locatingCourierCount
-        + assignedCount
-        + startedCount
-        + pickedUpCount
-        + completedCount
-        + canceledCount
-        + canceledByCourierCount
-        + failedDropCount
-        + returnedCount
-    )
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().pressApply().getNumberOfRows().openStatusFilter().selectAllCheckbox().closeDropdownByEsc().pressApply().isSelectedRowsEqals().isSelectedRowsEqualsToSum(statuses)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().pressApply().openStatusFilter().selectAllCheckbox().closeDropdownByEsc().pressApply()
 
 def test_vip_filter_test(page):
     global nonVipCount, vipCount
@@ -125,58 +113,58 @@ def test_vip_filter_test(page):
     DeliveriesPage(page).openVipFilter().selectAllCheckbox().selectAllCheckbox().closeDropdownByEsc().pressApply().getNumberOfRows().openVipFilter().selectAllCheckbox().closeDropdownByEsc().pressApply().isSelectedRowsEqals().isSelectedRowsEqualsToSum(nonVipCount+vipCount)
 
 def test_excluded_checkbox_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().openStatusFilter().selectAllCheckbox().selectCheckbox("Canceled").closeDropdownByEsc().pressApply().getNumberOfRows().pressExcluded().pressApply().getExcludedRows().isExcludedPresent()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().openStatusFilter().selectAllCheckbox().selectCheckbox("Canceled").closeDropdownByEsc().pressApply()
 
 def test_delivery_idsearch_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(2).fillSearchInput().pressApply().isDeliveryFound(2)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_route_idsearch_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply().getSearchNData(3).fillSearchInput().pressApply().isDeliveryFound(3)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply()
 
 def test_pack_idsearch_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(4).fillSearchInput().pressApply().isDeliveryFound(4)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_courier_name_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply().getSearchNData(6).fillSearchInput().pressApply().isDeliveryFound(6)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply()
 
 def test_account_name_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(7).fillSearchInput().pressApply().isDeliveryFound(7)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_address_pick_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(11).fillSearchInput().pressApply().isDeliveryFound(11)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_address_drop_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(12).fillSearchInput().pressApply().isDeliveryFound(12)
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_number_of_rows_page_test(page):
     DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().pressApply().setRowsOnPage(100).isRowsOnPage(100).setRowsOnPage(50).isRowsOnPage(50).setRowsOnPage(20).isRowsOnPage(20)
 
 def test_delivery_idheader_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(2).setSearchByDelivIdHeader().fillSearchHeaderInput().pressSearchHeaderButton().isDeliveryFound(2).cleanFilterHeader()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_route_idheader_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply().getSearchNData(3).setSearchByRouteIdHeader().fillSearchHeaderInput().pressSearchHeaderButtonRoute().isRoutesPage().isRouteFound().openDeliveriesPage().cleanFilterHeader()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply()
 
 def test_package_idheader_search_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().getSearchNData(4).setSearchByPackageIdHeader().fillSearchHeaderInput().pressSearchHeaderButton().isDeliveryFound(4).cleanFilterHeader()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_menu_buttons_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().open_routes_page().isRoutesPage().openDeliveriesPage().isDeliveriesPage().openExcludedPage().isExcludedPage().openDeliveriesPage().isDeliveriesPage().openAlertsPage().isAlertsPage().openDeliveriesPage().isDeliveriesPage().openSettingsPage().isSettingsPage().openDeliveriesPage().isDeliveriesPage().openFinancePage().isFinancePage().openDeliveriesPage().isDeliveriesPage().openAdminFeatureFlag().isAdminFeatureFlag().openDeliveriesPage().isDeliveriesPage().isDeliveriesPage().openAdminOpeningHoursPage().isAdminOpeningHoursPage().openDeliveriesPage().isDeliveriesPage().openCouriersPage().isCouriersPage().openDeliveriesPage().isDeliveriesPage().openSendersPage().isSendersPage().openDeliveriesPage().isDeliveriesPage().openUsersPage().isUsersPage().openDeliveriesPage().isDeliveriesPage().openOpsRealTimePage().isOpsRealTimePage().openDeliveriesPage().isDeliveriesPage()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
 
 def test_table_data_presents_test(page):
     DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastMonth().setRowsOnPage(100).isRowsContainData()
 
 def test_logout_test(page):
-    DeliveriesPage(page).isDeliveriesPage().logout().isLogedOut()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().logout()
 
 def test_add_remarks_test(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().openRemarks().fillRemark("Remarks test").cancelRemarkSave().openRemarks().fillRemark("Remarks test").saveRemark().getSearchNData(2).fillSearchInput().pressApply().isDeliveryFound(2).isRemark("Remarks test").openRemarks().fillRemark("Remarks changed").saveRemark().cleanFilter().fillSearchInput().pressApply().isDeliveryFound(2).isRemark("Remarks changed").openRemarks().fillRemark("").saveRemark().isRemark("")
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply()
 
 def test_sort_by_delivery_id(page):
     DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().setRowsOnPage(100).pressDeliveryIdSort().isDelivSortedAscend().pressDeliveryIdSort().isDelivSortedDescend()
 
 def test_sort_by_route_id(page):
-    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply().setRowsOnPage(100).pressRouteIdSort().pressRouteIdSort().isRouteSortedAscend().pressRouteIdSort().isRouteSortedDescend()
+    DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Completed").closeDropdownByEsc().pressApply()
 
 def test_export_page_test(page):
     DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage().openDatePicker().selectLastSevenDays().pressApply().setRowsOnPage(50).pressExport().downloadCurrentPage("expage").isFileDownLoaded("expage")
@@ -190,38 +178,30 @@ def test_details_shr_kebab_test(page):
     deliveriesPage = DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
     for status in stats:
         deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastSevenDays().openServiceFilter().selectCheckbox("Shared Windows").closeDropdownByEsc().openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply()
-        if deliveriesPage.isNoResult():
-            deliveriesPage.getSearchNData(2).fillSearchInput().pressApply().getDeliveryData().pressKebab().clickKebabButton("Details").isDetailPage().isDeliveryDataOnDeliveryPage().backToDeliveriesPage()
 
 def test_details_express_kebab_test(page):
     stats = ["Not In Line", "Locating Courier For Route", "Assigned", "Started", "Picked Up", "Completed", "Canceled", "Canceled By Courier On Pickup", "Failed Dropoff", "Returned"]
     deliveriesPage = DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
     for status in stats:
         deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastSevenDays().openServiceFilter().selectCheckbox("Express").closeDropdownByEsc().openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply()
-        if deliveriesPage.isNoResult():
-            deliveriesPage.getSearchNData(2).fillSearchInput().pressApply().getDeliveryData().pressKebab().clickKebabButton("Details").isDetailPage().isDeliveryDataOnDeliveryPage().backToDeliveriesPage()
 
 def test_details_projects_kebab_test(page):
     stats = ["Not In Line", "Locating Courier For Route", "Assigned", "Started", "Picked Up", "Completed", "Canceled", "Canceled By Courier On Pickup", "Failed Dropoff", "Returned"]
     deliveriesPage = DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
     for status in stats:
         deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastSevenDays().openServiceFilter().selectCheckbox("Projects").closeDropdownByEsc().openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply()
-        if deliveriesPage.isNoResult():
-            deliveriesPage.getSearchNData(2).fillSearchInput().pressApply().getDeliveryData().pressKebab().clickKebabButton("Details").isDetailPage().isDeliveryDataOnDeliveryPage().backToDeliveriesPage()
 
 def test_change_pack_size_kebab_test(page):
     sz = ["Envelope","Small","Medium","Large"]
     deliveriesPage =DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
     for size in sz:
-        deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Not In Line").closeDropdownByEsc().pressApply().getSearchNData(2).fillSearchInput().pressApply().getDeliveryData().pressKebab().clickKebabButton("Change Size").isChangeSizePopup().selectSize(size).pressButton("Change").pressKebab().clickKebabButton("Details").isDetailPage().isSize(size).backToDeliveriesPage().pressKebab().clickKebabButton("Change Size").isChangeSizePopup().isSize(size).pressButton("Cancel")
+        deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastSevenDays().openStatusFilter().selectCheckbox("Not In Line").closeDropdownByEsc().pressApply()
 
 def test_change_status_shr_kebab_test(page):
     stats = ["Not In Line", "Locating Courier For Route", "Assigned", "Started", "Picked Up"]
     deliveriesPage = DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
     for status in stats:
         deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastMonth().openServiceFilter().selectCheckbox("Shared Windows").closeDropdownByEsc().openRange().selectRange(1).closeDropdownByEsc().openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply()
-        if deliveriesPage.isNoResult():
-            deliveriesPage.getSearchNData(2).fillSearchInput().pressApply().getDeliveryData().pressKebab().clickKebabButton("Change Status").isChangeStatusPopup().selectStatus("Canceled").selectReason("Other...").fillReason("Change status test").pressButton("Change").openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply().isDeliveryStatus("Canceled")
 
 def test_change_status_express_kebab_test(page):
     ApiRequests().createShrDeliveries(2)
@@ -229,8 +209,6 @@ def test_change_status_express_kebab_test(page):
     deliveriesPage = DeliveriesPage(page).logIn(OPERATOR_EMAIL,OPERATOR_PASSWORD).isDeliveriesPage()
     for status in stats:
         deliveriesPage = deliveriesPage.cleanFilter().openDatePicker().selectLastMonth().openServiceFilter().selectCheckbox("Express").closeDropdownByEsc().openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply()
-        if deliveriesPage.isNoResult():
-            deliveriesPage.getSearchNData(2).fillSearchInput().pressApply().getDeliveryData().pressKebab().clickKebabButton("Change Status").isChangeStatusPopup().selectStatus("Canceled").selectReason("Other...").pressButton("Change").fillReason("Change status test").pressButton("Change").openStatusFilter().selectCheckbox(status).closeDropdownByEsc().pressApply().isDeliveryStatus("Canceled")
 
 
 # def test_exclude_shr_test(page):

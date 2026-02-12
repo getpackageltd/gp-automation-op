@@ -143,7 +143,10 @@ class DeliveriesPage(BasePage):
         return self
 
     def getCountOfRowsService(self):
-        self.serviceCount = self.getNumberOfSelectedRows()
+        if self.page.locator(self.noResult).is_visible():
+            self.serviceCount = 0
+        else:
+            self.serviceCount = self.getNumberOfSelectedRows()
         return self.serviceCount
 
     def getCountOfRows(self):
